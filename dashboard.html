@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,15 +16,38 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/d6ad5aad8d.js" crossorigin="anonymous"></script>
+
     <style>
-        *{
+        * {
             font-family: "Geist", sans-serif;
         }
     </style>
-    
+
     <link rel="stylesheet" href="styles/style.css">
 </head>
-<body class="bg-secondary">
 
+<body class="bg-secondary">
+    <div class="navbar bg-base-100 shadow-sm flex justify-between md:px-12">
+        <div class="flex items-center gap-3">
+            <img class="w-[40px]" src="assets/github-logo.png" alt="">
+            <h3 class="text-xl md:text-2xl font-semibold text-primary">GitHub Issues Tracker</h3>
+        </div>
+        <div class="flex items-center gap-2">
+            <label class="input">
+                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                        stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                </svg>
+                <input type="search" required placeholder="Search issues..." />
+            </label>
+            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Issue</button>
+        </div>
+    </div>
 </body>
+
 </html>
