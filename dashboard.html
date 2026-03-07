@@ -29,7 +29,8 @@
 </head>
 
 <body class="bg-secondary">
-    <div class="navbar bg-base-100 shadow-sm flex justify-between md:px-12">
+    <!-- Navbar section starts -->
+    <div class="navbar bg-base-100 shadow-sm flex justify-between md:px-8">
         <div class="flex items-center gap-3">
             <img class="w-[40px]" src="assets/github-logo.png" alt="">
             <h3 class="text-xl md:text-2xl font-semibold text-primary">GitHub Issues Tracker</h3>
@@ -48,6 +49,16 @@
             <button class="btn btn-primary font-semibold"><i class="fa-solid fa-plus"></i> New Issue</button>
         </div>
     </div>
+    <!-- Navbar section ends -->
+
+    <!-- Button toggle section starts -->
+    <div class="flex gap-3 md:gap-4 mt-10 bg-white shadow w-10/12 mx-auto p-5 rounded-lg">
+        <button class="bg-indigo-700 px-9 py-2 rounded-lg text-white text-sm">All</button>
+        <button class="bg-white border border-gray-200 px-6 py-2 rounded-lg text-sm text-gray-500">Open</button>
+        <button class="bg-white border border-gray-200 px-6 py-2 rounded-lg text-sm text-gray-500">Closed</button>
+    </div>
+    <!-- Button toggle section ends -->
+
 </body>
 
 </html>
