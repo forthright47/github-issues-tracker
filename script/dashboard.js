@@ -35,11 +35,20 @@ function getLabelHTML(label) {
 const cardDetailsModal = document.getElementById("card-details-modal");
 
 async function openCardModal(cardId) {
+
+  cardDetailsModal.showModal();
+  document.getElementById("modal-spinner").classList.remove("hidden");
+  document.getElementById("modal-content").classList.add("hidden");
+
   const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${cardId}`);
   const data = await res.json();
   const card = data.data;
 
+  document.getElementById("modal-spinner").classList.add("hidden");
+  document.getElementById("modal-content").classList.remove("hidden");
+
   if (card.assignee === "") card.assignee = "Unassigned";
+
   modalCardTitle.textContent = card.title;
 
   const status = document.getElementById("modal-card-status");
@@ -61,8 +70,6 @@ async function openCardModal(cardId) {
     card.priority === 'high'   ? 'bg-red-500' :
     card.priority === 'medium' ? 'bg-yellow-500' : 'bg-gray-400'
   }`;
-
-  cardDetailsModal.showModal();
 }
 
 function formattedDate(dateString) {
@@ -74,28 +81,51 @@ let allIssues = [];
 
 function filterIssues(type) {
 
-  // 1. Reset all buttons to inactive style
-  document.getElementById('btn-all').className    = 'bg-white border border-gray-200 px-10 py-2 rounded-xl text-sm text-gray-500';
-  document.getElementById('btn-open').className   = 'bg-white border border-gray-200 px-8 py-2 rounded-xl text-sm text-gray-500';
+  document.getElementById('btn-all').className = 'bg-white border border-gray-200 px-10 py-2 rounded-xl text-sm text-gray-500';
+  document.getElementById('btn-open').className = 'bg-white border border-gray-200 px-8 py-2 rounded-xl text-sm text-gray-500';
   document.getElementById('btn-closed').className = 'bg-white border border-gray-200 px-7 py-2 rounded-xl text-sm text-gray-500';
 
-  // 2. Set the clicked button to active style
   document.getElementById('btn-' + type).className = 'bg-indigo-700 px-10 py-2 rounded-xl text-white text-sm';
 
-  // 3. Filter and show the issues
-  if (type === 'all') {
-    displayIssues(allIssues);
-  } else if (type === 'open') {
-    const openIssues = allIssues.filter(issue => issue.status === 'open');
-    displayIssues(openIssues);
-  } else if (type === 'closed') {
-    const closedIssues = allIssues.filter(issue => issue.status === 'closed');
-    displayIssues(closedIssues);
-  }
+  manageSpinner(true);
+
+  setTimeout(function() {
+
+    if (type === 'all') {
+      displayIssues(allIssues);
+
+    } else if (type === 'open') {
+      const openIssues = allIssues.filter(function(issue) {
+        return issue.status === 'open';
+      });
+      displayIssues(openIssues);
+
+    } else if (type === 'closed') {
+      const closedIssues = allIssues.filter(function(issue) {
+        return issue.status === 'closed';
+      });
+      displayIssues(closedIssues);
+    }
+
+  }, 300);
 
 }
 
+const manageSpinner = (stats) => {
+  if(stats == true){
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("issues-container").classList.add("hidden");
+  }
+  else{
+    document.getElementById("issues-container").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+}
+
 const loadIssues = () => {
+
+  manageSpinner(true);
+
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then((res) => res.json())
     .then((data) => {
@@ -150,6 +180,7 @@ const displayIssues = (issues) => {
 
     issuesContainer.appendChild(issueCard);
   });
+  manageSpinner(false);
 }
 
 loadIssues();

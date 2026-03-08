@@ -88,6 +88,12 @@
             </div>
         </div>
         <!-- Total issues bar ends -->
+
+        <!-- Loading spinner -->
+        <section id="spinner" class="flex justify-center items-center py-20 hidden">
+            <span class="loading loading-dots loading-xl"></span>
+        </section>
+
         <!-- Issues grid cards section starts -->
         <div id="issues-container"
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-3 gap-3 items-stretch">
@@ -96,46 +102,46 @@
     </section>
     <!-- Issues card section ends -->
 
-
     <!-- Modal for showing the information of all cards -->
     <dialog id="card-details-modal" class="modal">
         <div class="modal-box p-7 space-y-4 max-w-lg">
-            <!-- Title -->
-            <h2 id="modal-card-title" class="text-2xl font-bold text-primary"></h2>
-            <!-- Status + Author + Date -->
-            <div class="flex items-center gap-2 flex-wrap">
-                <button id="modal-card-status"
-                    class="px-4 py-1 rounded-full text-xs font-semibold uppercase text-white"></button>
-                <span class="text-gray-400 text-sm">•</span>
-                <p id="modal-card-author" class="text-secondary text-sm"></p>
-                <span class="text-gray-400 text-sm">•</span>
-                <p id="modal-card-date" class="text-secondary text-sm"></p>
+            <!-- Modal spinner -->
+            <div id="modal-spinner" class="flex justify-center items-center py-10 hidden">
+                <span class="loading loading-dots loading-xl"></span>
             </div>
-            <!-- Labels -->
-            <div id="modal-card-labels" class="flex flex-wrap gap-2"></div>
-            <!-- Description -->
-            <p id="modal-card-description" class="text-secondary text-sm leading-relaxed"></p>
-            <!-- Assignee + Priority -->
-            <div class="bg-gray-100 flex justify-between px-6 py-4 rounded-lg">
-                <div>
-                    <p class="text-secondary text-sm mb-1">Assignee:</p>
-                    <h4 id="modal-card-assignee" class="font-semibold text-primary"></h4>
+            <!-- Modal content -->
+            <div id="modal-content" class="space-y-4">
+                <h2 id="modal-card-title" class="text-2xl font-bold text-primary"></h2>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button id="modal-card-status"
+                        class="px-4 py-1 rounded-full text-xs font-semibold uppercase text-white"></button>
+                    <span class="text-gray-400 text-sm">•</span>
+                    <p id="modal-card-author" class="text-secondary text-sm"></p>
+                    <span class="text-gray-400 text-sm">•</span>
+                    <p id="modal-card-date" class="text-secondary text-sm"></p>
                 </div>
-                <div>
-                    <p class="text-secondary text-sm mb-1">Priority:</p>
-                    <button id="modal-card-priority"
-                        class="px-4 py-1 rounded-full text-xs font-semibold uppercase"></button>
+                <div id="modal-card-labels" class="flex flex-wrap gap-2"></div>
+                <p id="modal-card-description" class="text-secondary text-sm leading-relaxed"></p>
+                <div class="bg-gray-100 flex justify-between px-6 py-4 rounded-lg">
+                    <div>
+                        <p class="text-secondary text-sm mb-1">Assignee:</p>
+                        <h4 id="modal-card-assignee" class="font-semibold text-primary"></h4>
+                    </div>
+                    <div>
+                        <p class="text-secondary text-sm mb-1">Priority:</p>
+                        <button id="modal-card-priority"
+                            class="px-4 py-1 rounded-full text-xs font-semibold uppercase"></button>
+                    </div>
+                </div>
+                <div class="modal-action mt-2">
+                    <form method="dialog">
+                        <button class="btn btn-primary px-8">Close</button>
+                    </form>
                 </div>
             </div>
-            <!-- Close button -->
-            <div class="modal-action mt-2">
-                <form method="dialog">
-                    <button class="btn btn-primary px-8">Close</button>
-                </form>
-            </div>
+
         </div>
     </dialog>
-
 
     <script src="script/dashboard.js"></script>
 </body>
