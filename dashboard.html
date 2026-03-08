@@ -91,14 +91,39 @@
 
 
     <!-- Modal for showing the information of all cards -->
-    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-            <h3 class="text-lg font-bold">Hello!</h3>
-            <p class="py-4">Press ESC key or click the button below to close</p>
-            <div class="modal-action">
+    <dialog id="card-details-modal" class="modal">
+        <div class="modal-box p-7 space-y-4 max-w-lg">
+            <!-- Title -->
+            <h2 id="modal-card-title" class="text-2xl font-bold text-primary"></h2>
+            <!-- Status + Author + Date -->
+            <div class="flex items-center gap-2 flex-wrap">
+                <button id="modal-card-status"
+                    class="px-4 py-1 rounded-full text-xs font-semibold uppercase text-white"></button>
+                <span class="text-gray-400 text-sm">•</span>
+                <p id="modal-card-author" class="text-secondary text-sm"></p>
+                <span class="text-gray-400 text-sm">•</span>
+                <p id="modal-card-date" class="text-secondary text-sm"></p>
+            </div>
+            <!-- Labels -->
+            <div id="modal-card-labels" class="flex flex-wrap gap-2"></div>
+            <!-- Description -->
+            <p id="modal-card-description" class="text-secondary text-sm leading-relaxed"></p>
+            <!-- Assignee + Priority -->
+            <div class="bg-gray-100 flex justify-between px-6 py-4 rounded-lg">
+                <div>
+                    <p class="text-secondary text-sm mb-1">Assignee:</p>
+                    <h4 id="modal-card-assignee" class="font-semibold text-primary"></h4>
+                </div>
+                <div>
+                    <p class="text-secondary text-sm mb-1">Priority:</p>
+                    <button id="modal-card-priority"
+                        class="px-4 py-1 rounded-full text-xs font-semibold uppercase"></button>
+                </div>
+            </div>
+            <!-- Close button -->
+            <div class="modal-action mt-2">
                 <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn">Close</button>
+                    <button class="btn btn-primary px-8">Close</button>
                 </form>
             </div>
         </div>

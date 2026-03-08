@@ -1,3 +1,13 @@
+const modalCardTitle = document.getElementById("modal-card-title");
+const modalCardStatus = document.getElementById("modal-card-status");
+const modalCardAuthor = document.getElementById("modal-card-author");
+const modalCardDate = document.getElementById("modal-card-date");
+const modalCardLabel1 = document.getElementById("modal-card-label-1");
+const modalCardLabel2 = document.getElementById("modal-card-label-2");
+const modalCardDescription = document.getElementById("modal-card-description");
+const modalCardAssignee = document.getElementById("modal-card-assignee");
+const modalCardPriority = document.getElementById("modal-card-priority");
+
 const priorityStyles = {
   'high':   'bg-red-100 text-red-500',
   'medium': 'bg-yellow-100 text-yellow-600',
@@ -20,6 +30,39 @@ function getLabelHTML(label) {
       ${label.toUpperCase()}
     </span>
   `;
+}
+
+const cardDetailsModal = document.getElementById("card-details-modal");
+
+async function openCardModal(cardId) {
+  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${cardId}`);
+  const data = await res.json();
+  const card = data.data;
+
+  if (card.assignee === "") card.assignee = "Unassigned";
+  modalCardTitle.textContent = card.title;
+
+  const status = document.getElementById("modal-card-status");
+  status.textContent = card.status === 'open' ? 'Opened' : 'Closed';
+  status.className = `px-4 py-1 rounded-full text-xs font-semibold uppercase text-white ${card.status === 'open' ? 'bg-green-500' : 'bg-purple-600'}`;
+
+  document.getElementById("modal-card-author").textContent = `Opened by ${card.author}`;
+  document.getElementById("modal-card-date").textContent = formattedDate(card.createdAt);
+
+  document.getElementById("modal-card-labels").innerHTML = card.labels.map(label => getLabelHTML(label)).join('');
+
+  document.getElementById("modal-card-description").textContent = card.description;
+
+  document.getElementById("modal-card-assignee").textContent = card.assignee;
+
+  const priority = document.getElementById("modal-card-priority");
+  priority.textContent = card.priority;
+  priority.className = `px-4 py-1 rounded-full text-xs font-semibold uppercase text-white ${
+    card.priority === 'high'   ? 'bg-red-500' :
+    card.priority === 'medium' ? 'bg-yellow-500' : 'bg-gray-400'
+  }`;
+
+  cardDetailsModal.showModal();
 }
 
 function formattedDate(dateString) {
@@ -51,7 +94,7 @@ const displayIssues = (issues) => {
 
     const issueCard = document.createElement("div");
     issueCard.innerHTML = `
-      <div onclick="my_modal_5.showModal()" class="shadow-sm rounded-lg p-3 flex flex-col h-full border border-gray-100 cursor-pointer hover:shadow-md transition-shadow">
+      <div onclick="openCardModal(${issue.id})" class="shadow-sm rounded-lg p-3 flex flex-col h-full border border-gray-100 cursor-pointer hover:shadow-md transition-shadow">
         <div class="flex justify-between items-center mb-2">
           <img src="${statusImg}" alt="${issue.status}">
           <span class="text-xs px-4 py-1 font-semibold rounded-full uppercase ${priorityLabels}">${issue.priority}</span>
