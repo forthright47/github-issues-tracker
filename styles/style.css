@@ -7,3 +7,10 @@
 .bg-secondary{
     background-color: #F8FAFC;
 }
+
+@media (max-width: 768px) {
+    .search-input::placeholder {
+        content: "Search";
+        font-size: 12px;
+    }
+}
