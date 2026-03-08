@@ -10,7 +10,6 @@
 
 @media (max-width: 768px) {
     .search-input::placeholder {
-        content: "Search";
         font-size: 12px;
     }
 }
