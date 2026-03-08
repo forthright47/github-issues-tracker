@@ -51,7 +51,7 @@ const displayIssues = (issues) => {
 
     const issueCard = document.createElement("div");
     issueCard.innerHTML = `
-      <div class="shadow-sm rounded-lg p-3 flex flex-col h-full border border-gray-100 cursor-pointer hover:shadow-md transition-shadow">
+      <div onclick="my_modal_5.showModal()" class="shadow-sm rounded-lg p-3 flex flex-col h-full border border-gray-100 cursor-pointer hover:shadow-md transition-shadow">
         <div class="flex justify-between items-center mb-2">
           <img src="${statusImg}" alt="${issue.status}">
           <span class="text-xs px-4 py-1 font-semibold rounded-full uppercase ${priorityLabels}">${issue.priority}</span>
