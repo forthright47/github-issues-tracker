@@ -70,10 +70,38 @@ function formattedDate(dateString) {
   return date.toLocaleDateString("en-GB").replace(/\//g, "-");
 }
 
+let allIssues = [];
+
+function filterIssues(type) {
+
+  // 1. Reset all buttons to inactive style
+  document.getElementById('btn-all').className    = 'bg-white border border-gray-200 px-10 py-2 rounded-xl text-sm text-gray-500';
+  document.getElementById('btn-open').className   = 'bg-white border border-gray-200 px-8 py-2 rounded-xl text-sm text-gray-500';
+  document.getElementById('btn-closed').className = 'bg-white border border-gray-200 px-7 py-2 rounded-xl text-sm text-gray-500';
+
+  // 2. Set the clicked button to active style
+  document.getElementById('btn-' + type).className = 'bg-indigo-700 px-10 py-2 rounded-xl text-white text-sm';
+
+  // 3. Filter and show the issues
+  if (type === 'all') {
+    displayIssues(allIssues);
+  } else if (type === 'open') {
+    const openIssues = allIssues.filter(issue => issue.status === 'open');
+    displayIssues(openIssues);
+  } else if (type === 'closed') {
+    const closedIssues = allIssues.filter(issue => issue.status === 'closed');
+    displayIssues(closedIssues);
+  }
+
+}
+
 const loadIssues = () => {
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then((res) => res.json())
-    .then((data) => displayIssues(data.data));
+    .then((data) => {
+      allIssues = data.data;
+      displayIssues(allIssues);
+    });
 }
 
 const displayIssues = (issues) => {
