@@ -23,8 +23,8 @@
     
     <link rel="stylesheet" href="styles/style.css">
 </head>
-<body class="bg-secondary p-4 md:p-10">
-    <div class="min-h-[720px] max-w-lg mx-auto bg-white shadow-xl rounded-lg p-5">
+<body class="bg-secondary min-h-screen flex items-center justify-center p-4 md:p-10">
+    <div class="min-h-[720px] w-full max-w-md mx-auto bg-white shadow-xl rounded-lg p-5">
         <div class="logo w-[100px] mx-auto pt-4">
             <img src="assets/github-logo.png" alt="">
         </div>
@@ -38,10 +38,10 @@
                 <div class="card-body">
                     <fieldset class="fieldset">
                     <label class="label text-neutral font-bold">Username</label>
-                    <input id="input-username" type="text" class="input rounded-lg bg-base-200" placeholder="Enter Username" />
+                    <input id="input-username" type="text" class="input rounded-lg bg-base-200 w-full" placeholder="Enter Username" />
                     <p class="text-blue-700">Default: admin</p>
                     <label class="label text-neutral font-bold">Password</label>
-                    <input id="input-password" type="password" class="input rounded-lg bg-base-200" placeholder="Enter Password" />
+                    <input id="input-password" type="password" class="input rounded-lg bg-base-200 w-full" placeholder="Enter Password" />
                     <p class="text-blue-700">Default: admin123</p>
                     <button id="login-btn" class="btn btn-primary mt-2 rounded-lg w-full">Sign In</button>
                     </fieldset>
