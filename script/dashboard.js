@@ -118,11 +118,12 @@ const displayIssues = (issues) => {
     
     const priorityLabels = priorityStyles[issue.priority] ?? 'bg-gray-100 text-gray-500';
     const statusImg = issue.status === 'open' ? 'assets/Open-Status.png' : 'assets/Closed-Status.png';
+    const topBorder = issue.status === 'open' ? 'border-t-4 border-t-green-500' : 'border-t-4 border-t-purple-500';
     const labelsHTML = issue.labels.map(label => getLabelHTML(label)).join('');
 
     const issueCard = document.createElement("div");
     issueCard.innerHTML = `
-      <div onclick="openCardModal(${issue.id})" class="shadow-sm rounded-lg p-3 flex flex-col h-full border border-gray-100 cursor-pointer hover:shadow-md transition-shadow">
+      <div onclick="openCardModal(${issue.id})" class="shadow-sm rounded-lg p-3 flex flex-col h-full border border-gray-100 cursor-pointer hover:shadow-md transition-shadow ${topBorder}">
         <div class="flex justify-between items-center mb-2">
           <img src="${statusImg}" alt="${issue.status}">
           <span class="text-xs px-4 py-1 font-semibold rounded-full uppercase ${priorityLabels}">${issue.priority}</span>
