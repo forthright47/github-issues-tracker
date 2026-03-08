@@ -81,11 +81,11 @@ let allIssues = [];
 
 function filterIssues(type) {
 
-  document.getElementById('btn-all').className = 'bg-white border border-gray-200 px-10 py-2 rounded-xl text-sm text-gray-500';
-  document.getElementById('btn-open').className = 'bg-white border border-gray-200 px-8 py-2 rounded-xl text-sm text-gray-500';
-  document.getElementById('btn-closed').className = 'bg-white border border-gray-200 px-7 py-2 rounded-xl text-sm text-gray-500';
+  document.getElementById('btn-all').className = 'bg-white border border-gray-200 px-5 py-2 md:px-10 rounded-xl text-sm text-gray-500';
+  document.getElementById('btn-open').className = 'bg-white border border-gray-200 px-5 md:px-8 py-2 rounded-xl text-sm text-gray-500';
+  document.getElementById('btn-closed').className = 'bg-white border border-gray-200 px-5 md:px-7 py-2 rounded-xl text-sm text-gray-500';
 
-  document.getElementById('btn-' + type).className = 'bg-indigo-700 px-10 py-2 rounded-xl text-white text-sm';
+  document.getElementById('btn-' + type).className = 'bg-indigo-700 px-5 py-2 md:px-10 rounded-xl text-white text-sm';
 
   manageSpinner(true);
 
