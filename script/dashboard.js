@@ -1,3 +1,9 @@
+const priorityStyles = {
+  'high':   'bg-red-100 text-red-500',
+  'medium': 'bg-yellow-100 text-yellow-600',
+  'low':    'bg-gray-200 text-gray-600',
+};
+
 const labelStyles = {
   'bug': { class: 'bg-red-100 text-red-600 border border-red-400', icon: 'fa-solid fa-bug' },
   'enhancement': { class: 'bg-blue-100 text-blue-600 border border-blue-400', icon: 'fa-solid fa-bolt' },
@@ -20,12 +26,6 @@ function formattedDate(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-GB").replace(/\//g, "-");
 }
-
-const priorityStyles = {
-  'high':   'bg-red-100 text-red-500',
-  'medium': 'bg-yellow-100 text-yellow-600',
-  'low':    'bg-gray-200 text-gray-600',
-};
 
 const loadIssues = () => {
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
