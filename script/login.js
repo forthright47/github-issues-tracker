@@ -11,7 +11,7 @@ document.getElementById("login-btn").addEventListener("click", function(){
     if(userName == "admin" && password == "admin123"){
         // alert("Login successfully");
 
-        window.location.assign("/dashboard.html");
+        window.location.assign("dashboard.html");
     }
     else{
         alert("Invalid username or password");
