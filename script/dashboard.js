@@ -184,3 +184,25 @@ const displayIssues = (issues) => {
 }
 
 loadIssues();
+
+
+// Search functionality
+document.getElementById("btn-search").addEventListener("click", function() {
+
+  const searchValue = document.getElementById("input-search").value.trim();
+
+  if (searchValue === "") {
+    displayIssues(allIssues);
+    return;
+  }
+
+  manageSpinner(true);
+
+  const searchURL = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`;
+  fetch(searchURL)
+  .then((response) => response.json())
+  .then((data) => {
+    const searchedIssues = data.data;
+    displayIssues(searchedIssues);
+  });
+});
